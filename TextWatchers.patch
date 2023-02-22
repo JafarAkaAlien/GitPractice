@@ -1,0 +1,158 @@
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision a0430b2710757285e7c4c310a719ca1e015740be)
++++ b/.idea/gradle.xml	(revision fb352bd724cf65088441c78b483bbbfcb7e3d71a)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision a0430b2710757285e7c4c310a719ca1e015740be)
++++ b/app/build.gradle	(revision fb352bd724cf65088441c78b483bbbfcb7e3d71a)
+@@ -5,12 +5,12 @@
+ 
+ android {
+     namespace 'com.leblebi.gitpractice'
+-    compileSdk 32
++    compileSdk 33
+ 
+     defaultConfig {
+         applicationId "com.leblebi.gitpractice"
+         minSdk 26
+-        targetSdk 32
++        targetSdk 33
+         versionCode 1
+         versionName "1.0"
+ 
+@@ -30,6 +30,9 @@
+     kotlinOptions {
+         jvmTarget = '1.8'
+     }
++    buildFeatures{
++        viewBinding = true
++    }
+ }
+ 
+ dependencies {
+Index: app/src/main/java/com/leblebi/gitpractice/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/leblebi/gitpractice/MainActivity.kt b/app/src/main/java/com/leblebi/gitpractice/MainActivity.kt
+--- a/app/src/main/java/com/leblebi/gitpractice/MainActivity.kt	(revision a0430b2710757285e7c4c310a719ca1e015740be)
++++ b/app/src/main/java/com/leblebi/gitpractice/MainActivity.kt	(revision fb352bd724cf65088441c78b483bbbfcb7e3d71a)
+@@ -1,14 +1,55 @@
+ package com.leblebi.gitpractice
+ 
++import android.content.ContentValues.TAG
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.text.Editable
++import android.text.TextWatcher
++import android.util.Log
++import androidx.core.widget.addTextChangedListener
++import androidx.core.widget.doOnTextChanged
++import com.leblebi.gitpractice.databinding.ActivityMainBinding
++import java.util.zip.Inflater
+ 
+ class MainActivity : AppCompatActivity() {
++    private lateinit var binding : ActivityMainBinding
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_main)
++        println("LocalChange")
++
++        binding = ActivityMainBinding.inflate(layoutInflater)
++        val view = binding.root
++        setContentView(view)
++        //////////////////////// Text Watchers feature //////////////////////////
++
++        binding.ETm.addTextChangedListener(textWatcher)
++
++
++        }
++    var textWatcher=object :TextWatcher{
++        override fun beforeTextChanged(
++            s: CharSequence?,
++            start: Int,
++            count: Int,
++            after: Int
++        ) {
++            print("salam")
++        }
++
++        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
++            Log.d(TAG, "onTextChanged: SalamOlsunDunyaya")
++            println("Nilll oturumlu illerim")
++            binding.Tv.text = binding.ETm.text
++        }
++
++        override fun afterTextChanged(s: Editable?) {
+ 
++            println("After Nilll oturumlu illerim")
++        }
+     }
++
++
+ 
+     fun salam(){
+         println("salam")
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision a0430b2710757285e7c4c310a719ca1e015740be)
++++ b/app/src/main/res/layout/activity_main.xml	(revision fb352bd724cf65088441c78b483bbbfcb7e3d71a)
+@@ -7,6 +7,7 @@
+     tools:context=".MainActivity">
+ 
+     <TextView
++        android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Hello World!"
+@@ -15,4 +16,28 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
++    <TextView
++        android:id="@+id/Tv"
++        android:layout_width="271dp"
++        android:layout_height="108dp"
++        android:layout_marginTop="132dp"
++        android:hint="Yaz qaqa"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <EditText
++        android:id="@+id/ETm"
++        android:layout_width="291dp"
++        android:layout_height="90dp"
++        android:layout_marginTop="64dp"
++        android:ems="10"
++        android:hint="yaz qaqa"
++        android:inputType="textPersonName"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView2"
++        app:layout_constraintVertical_bias="0.069" />
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
