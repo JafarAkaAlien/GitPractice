@@ -13,4 +13,5 @@ class MainActivity : AppCompatActivity() {
     fun salam(){
         println("salam")
     }
+    aybla
 }
