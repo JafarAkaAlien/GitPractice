@@ -14,7 +14,7 @@ class NextPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_next_page)
 
-
+        ///////////////////// Buttons /////////////////////
         binding = ActivityNextPageBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -29,5 +29,13 @@ class NextPage : AppCompatActivity() {
 
             binding.yaziyeri.text = text
         }
+
+        ///////////////////// Fragment ////////////////////////
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragment = MapsFragment()
+        fragmentTransaction.add(R.id.frameforFrag,fragment)
+        fragmentTransaction.commit()
+
     }
 }

@@ -10,12 +10,13 @@
         android:id="@+id/buttonKecid"
         android:layout_width="173dp"
         android:layout_height="76dp"
+        android:layout_marginTop="18dp"
         android:text="Arxaya qeyit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.813" />
+        app:layout_constraintTop_toBottomOf="@+id/yazici"
+        app:layout_constraintVertical_bias="0.03" />
 
     <TextView
         android:id="@+id/textView"
@@ -32,16 +33,14 @@
 
     <TextView
         android:id="@+id/yaziyeri"
-        android:layout_width="290dp"
-        android:layout_height="136dp"
+        android:layout_width="279dp"
+        android:layout_height="56dp"
+        android:hint="Eger bosdusa demeli gelmeyib"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327"
-        android:hint="Eger bosdusa demeli gelmeyib"
-        />
+        app:layout_constraintVertical_bias="0.208" />
 
     <Button
         android:id="@+id/yazici"
@@ -50,8 +49,22 @@
         android:text="Kohneden gelenleri yaz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.702" />
+
+    <FrameLayout
+        android:id="@+id/frameforFrag"
+        android:layout_width="319dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/yazici"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yaziyeri"
+        app:layout_constraintVertical_bias="0.602" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
