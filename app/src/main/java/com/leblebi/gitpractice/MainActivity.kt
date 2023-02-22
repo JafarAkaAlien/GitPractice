@@ -8,5 +8,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 602884d (ikinci)
 }
