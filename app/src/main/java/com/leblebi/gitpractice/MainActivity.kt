@@ -1,6 +1,7 @@
 package com.leblebi.gitpractice
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -25,8 +26,22 @@ class MainActivity : AppCompatActivity() {
 
         binding.ETm.addTextChangedListener(textWatcher)
 
+        binding.button.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("text",binding.Tv.text.toString())
+            val intent = Intent(this, NextPage::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            finish()
+        }
 
         }
+
+
+
+
+
+    ////////////////////////////////// TextWathcer obyekti ////////////////////////////
     var textWatcher=object :TextWatcher{
         override fun beforeTextChanged(
             s: CharSequence?,
@@ -34,19 +49,21 @@ class MainActivity : AppCompatActivity() {
             count: Int,
             after: Int
         ) {
-            print("salam")
+
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            Log.d(TAG, "onTextChanged: SalamOlsunDunyaya")
-            println("Nilll oturumlu illerim")
+
             binding.Tv.text = binding.ETm.text
         }
 
         override fun afterTextChanged(s: Editable?) {
 
-            println("After Nilll oturumlu illerim")
+
         }
+
+
+
     }
 
 
