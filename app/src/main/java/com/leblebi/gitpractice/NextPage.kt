@@ -25,9 +25,11 @@ class NextPage : AppCompatActivity() {
         }
         val bundle = intent.extras
         val text = bundle?.getString("text")
-        binding.yazici.setOnClickListener{
+        var interaction = object : MapsFragment.FragmentListener {
+            override fun onFragmentInteraction(data: String): String {
+                return ("Bura da Gelib Amma bu fragmentdi: $data")
+            }
 
-            binding.yaziyeri.text = text
         }
 
         ///////////////////// Fragment ////////////////////////
@@ -37,5 +39,12 @@ class NextPage : AppCompatActivity() {
         fragmentTransaction.add(R.id.frameforFrag,fragment)
         fragmentTransaction.commit()
 
+/////////////////////////////// setting up text ///////////////
+        binding.yazici.setOnClickListener{
+            fragment.simpleYaz(binding.yaziyeri.text.toString())
+        }
+
     }
+
+
 }

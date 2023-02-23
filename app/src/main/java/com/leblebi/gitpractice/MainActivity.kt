@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener{
             val bundle = Bundle()
+            //bundle.putSerializable()
             bundle.putString("text",binding.Tv.text.toString())
             val intent = Intent(this, NextPage::class.java)
             intent.putExtras(bundle)
