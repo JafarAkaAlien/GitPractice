@@ -9,6 +9,7 @@ import com.leblebi.gitpractice.databinding.ActivityNextPageBinding
 
 class NextPage : AppCompatActivity() {
     private lateinit var binding  : ActivityNextPageBinding
+    private  var text:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class NextPage : AppCompatActivity() {
             finish()
         }
         val bundle = intent.extras
-        val text = bundle?.getString("text")
+        text = bundle?.getString("text")!!
         var interaction = object : MapsFragment.FragmentListener {
             override fun onFragmentInteraction(data: String): String {
                 return ("Bura da Gelib Amma bu fragmentdi: $data")
@@ -41,7 +42,8 @@ class NextPage : AppCompatActivity() {
 
 /////////////////////////////// setting up text ///////////////
         binding.yazici.setOnClickListener{
-            fragment.simpleYaz(binding.yaziyeri.text.toString())
+            binding.yaziyeri.text=text
+            fragment.yaziniYaz(text!!, interaction)
         }
 
     }
